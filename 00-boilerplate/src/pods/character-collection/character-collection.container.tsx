@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { linkRoutes } from 'core/router';
 import { deleteHotel } from './api';
-import { useHotelCollection } from './hotel-collection.hook';
-import { HotelCollectionComponent } from './hotel-collection.component';
+import { useHotelCollection } from './character-collection.hook';
+import { HotelCollectionComponent } from './character-collection.component';
 
 export const HotelCollectionContainer = () => {
   const { hotelCollection, loadHotelCollection } = useHotelCollection();

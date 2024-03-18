@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AppLayout } from 'layouts';
-import { HotelContainer } from 'pods/hotel';
+import { HotelContainer } from 'pods/character';
 
 export const HotelScene = () => (
   <AppLayout>

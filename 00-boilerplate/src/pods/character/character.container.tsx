@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as api from './api';
-import { createEmptyHotel, Hotel } from './hotel.vm';
-import { mapHotelFromApiToVm, mapHotelFromVmToApi } from './hotel.mappers';
+import { createEmptyHotel, Hotel } from './character.vm';
+import { mapHotelFromApiToVm, mapHotelFromVmToApi } from './character.mappers';
 import { Lookup } from 'common/models';
-import { HotelComponent } from './hotel.component';
+import { HotelComponent } from './character.component';
 
 export const HotelContainer: React.FunctionComponent = (props) => {
   const [hotel, setHotel] = React.useState<Hotel>(createEmptyHotel());
