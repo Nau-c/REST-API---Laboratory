@@ -15,6 +15,16 @@ export const HotelCollectionComponent: React.FunctionComponent<Props> = (
   props
 ) => {
   const { hotelCollection, onCreateHotel, onEdit, onDelete } = props;
+  const [characters, setCharacters] = React.useState([]);
+
+
+  React.useEffect(() => {
+    fetch('https://rickandmortyapi.com/api/character')
+      .then((response) => response.json())
+      .then((data) => setCharacters(data.results))
+      .catch((error) => console.error('Error:', error))
+  }, []);
+
 
   return (
     <div className={classes.root}>
@@ -23,9 +33,9 @@ export const HotelCollectionComponent: React.FunctionComponent<Props> = (
       </Button>
 
       <ul className={classes.list}>
-        {hotelCollection.map((hotel) => (
-          <li key={hotel.id}>
-            <HotelCard hotel={hotel} onEdit={onEdit} onDelete={onDelete} />
+        {characters.map((character) => (
+          <li key={character.id}>
+            <HotelCard hotel={character} onEdit={onEdit} onDelete={onDelete} />
           </li>
         ))}
       </ul>
