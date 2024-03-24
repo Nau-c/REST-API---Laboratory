@@ -15,3 +15,23 @@ export const createEmptyHotel = (): Hotel => ({
   address: '',
   city: '',
 });
+
+export interface Character {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  rating: number;
+}
+
+export const createEmptyCharacter = (): Character => ({
+  id: 0,
+  name: '',
+  status: '',
+  species: '',
+  type: '',
+  gender: '',
+  rating: 0,
+});

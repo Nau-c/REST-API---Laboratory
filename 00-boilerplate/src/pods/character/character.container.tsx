@@ -4,7 +4,7 @@ import * as api from './api';
 import { createEmptyHotel, Hotel } from './character.vm';
 import { mapHotelFromApiToVm, mapHotelFromVmToApi } from './character.mappers';
 import { Lookup } from 'common/models';
-import { HotelComponent } from './character.component';
+import { CharacterComponent } from './character.component';
 
 export const HotelContainer: React.FunctionComponent = (props) => {
   const [hotel, setHotel] = React.useState<Hotel>(createEmptyHotel());
@@ -39,5 +39,5 @@ export const HotelContainer: React.FunctionComponent = (props) => {
     }
   };
 
-  return <HotelComponent hotel={hotel} cities={cities} onSave={handleSave} />;
+  return <CharacterComponent character={hotel} cities={cities} onSave={handleSave} />;
 };
