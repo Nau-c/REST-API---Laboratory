@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import { HotelEntityVm } from './character-collection.vm';
-import { HotelCard } from './components/hotel-card.component';
+import { CharacterCard } from './components/hotel-card.component';
 import * as classes from './character-collection.styles';
 
 interface Props {
@@ -35,7 +35,7 @@ export const HotelCollectionComponent: React.FunctionComponent<Props> = (
       <ul className={classes.list}>
         {characters.map((character) => (
           <li key={character.id}>
-            <HotelCard hotel={character} onEdit={onEdit} onDelete={onDelete} />
+            <CharacterCard character={character} onEdit={onEdit} onDelete={onDelete} />
           </li>
         ))}
       </ul>
