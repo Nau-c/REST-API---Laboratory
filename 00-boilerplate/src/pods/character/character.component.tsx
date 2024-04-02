@@ -55,10 +55,10 @@ import * as classes from './character.styles';
 interface Props {
   character: Character; // Cambia el tipo de hotel a Character
 }
-
+// TODO 1: Cambia el nombre de la función de HotelComponent a CharacterComponent e investigar porque llega vacio
 export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
   const { character } = props;
-
+  console.log(props)
   return (
     <div className={classes.root}>
       <Typography variant="h4">{character.name}</Typography>
