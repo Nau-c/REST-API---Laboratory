@@ -34,7 +34,7 @@ export const HotelCollectionComponent: React.FunctionComponent<Props> = (
 
       <ul className={classes.list}>
         {characters.map((character) => (
-          <li key={character.id}>
+          <li key={character?.id}>
             <CharacterCard character={character} onEdit={onEdit} onDelete={onDelete} />
           </li>
         ))}

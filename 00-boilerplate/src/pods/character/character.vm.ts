@@ -17,21 +17,39 @@ export const createEmptyHotel = (): Hotel => ({
 });
 
 export interface Character {
-  id: number;
+  id: string;
   name: string;
   status: string;
   species: string;
   type: string;
   gender: string;
   rating: number;
+  location: location;
+  image: image;
+  origin: origin;
 }
 
 export const createEmptyCharacter = (): Character => ({
-  id: 0,
+  id: '',
   name: '',
   status: '',
   species: '',
   type: '',
   gender: '',
   rating: 0,
+  location: { name: '' },
+  image: { name: '' },
+  origin: { name: '' },
 });
+
+export interface image {
+  name: string;
+}
+
+export interface location {
+  name: string;
+}
+
+export interface origin {
+  name: string;
+}

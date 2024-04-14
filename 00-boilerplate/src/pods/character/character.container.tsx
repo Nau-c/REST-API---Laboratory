@@ -1,13 +1,14 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as api from './api';
-import { createEmptyHotel, Hotel } from './character.vm';
-import { mapHotelFromApiToVm, mapHotelFromVmToApi } from './character.mappers';
+import { mapHotelFromApiToVm, mapHotelFromVmToApi, mapCharacterFromApiToVm } from './character.mappers';
+import { createEmptyHotel, Hotel, createEmptyCharacter, Character } from './character.vm';
 import { Lookup } from 'common/models';
 import { CharacterComponent } from './character.component';
 
 export const HotelContainer: React.FunctionComponent = (props) => {
-  const [hotel, setHotel] = React.useState<Hotel>(createEmptyHotel());
+  // const [hotel, setHotel] = React.useState<Hotel>(createEmptyHotel());
+  const [character, setCharacter] = React.useState<Character>(createEmptyCharacter());
   const [cities, setCities] = React.useState<Lookup[]>([]);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -17,21 +18,21 @@ export const HotelContainer: React.FunctionComponent = (props) => {
     setCities(apiCities);
   };
 
-  const handleLoadHotel = async () => {
-    const apiHotel = await api.getHotel(id);
-    setHotel(mapHotelFromApiToVm(apiHotel));
+  const handleLoadCharacter = async () => {
+    const apiCharacter = await api.getCharacter(id);
+    setCharacter(mapCharacterFromApiToVm(apiCharacter));
   };
 
   React.useEffect(() => {
     if (id) {
-      handleLoadHotel();
+      handleLoadCharacter();
     }
     handleLoadCityCollection();
   }, []);
 
-  const handleSave = async (hotel: Hotel) => {
-    const apiHotel = mapHotelFromVmToApi(hotel);
-    const success = await api.saveHotel(apiHotel);
+  const handleSave = async (character: Character) => {
+    const apiCharacter = mapHotelFromVmToApi(character);
+    const success = await api.saveCharacter(apiCharacter);
     if (success) {
       navigate(-1);
     } else {
@@ -39,5 +40,5 @@ export const HotelContainer: React.FunctionComponent = (props) => {
     }
   };
 
-  return <CharacterComponent character={hotel} cities={cities} onSave={handleSave} />;
+  return <CharacterComponent character={character} onSave={handleSave} />;
 };

@@ -47,26 +47,45 @@
 //     </Formik>
 //   );
 // };
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Character } from './character.vm'; // Importa la interfaz del personaje
 import Typography from '@mui/material/Typography';
 import * as classes from './character.styles';
+import { useParams } from 'react-router-dom';
 
 interface Props {
   character: Character; // Cambia el tipo de hotel a Character
 }
+
+
+
+
+
 // TODO 1: Cambia el nombre de la función de HotelComponent a CharacterComponent e investigar porque llega vacio
 export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
-  const { character } = props;
-  console.log(props)
+  const { id } = useParams<{ id: string }>();
+  const [characters, setCharacter] = useState<Character | null>(null);
+
+  useEffect(() => {
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then((response) => response.json())
+      .then((data) => setCharacter(data))
+      .catch((error) => console.error('Error fetching character details:', error));
+  }, [id]);
+
+
   return (
     <div className={classes.root}>
-      <Typography variant="h4">{character.name}</Typography>
-      <Typography variant="subtitle1">Species: {character.species}</Typography>
-      <Typography variant="subtitle1">Status: {character.status}</Typography>
-      <Typography variant="subtitle1">Gender: {character.gender}</Typography>
-      <Typography variant="subtitle1">Rating: {character.rating}</Typography>
+      <Typography variant="h4">{characters?.name}</Typography>
+      <Typography variant="subtitle1">Species: {characters?.species}</Typography>
+      <Typography variant="subtitle1">Status: {characters?.status}</Typography>
+      <Typography variant="subtitle1">Gender: {characters?.gender}</Typography>
+      <Typography variant="subtitle1">Location: {characters?.location?.name}</Typography>
+      <Typography variant="subtitle1">Origin: {characters?.origin?.name}</Typography>
+      {characters?.image && <img src={characters?.image} alt={characters?.name} />}
+
     </div>
   );
 };
+
 

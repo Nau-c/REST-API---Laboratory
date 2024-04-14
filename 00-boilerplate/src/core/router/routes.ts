@@ -9,9 +9,9 @@ interface SwitchRoutes {
 
 export const switchRoutes: SwitchRoutes = {
   root: '/',
-  hotelCollection: '/hotels',
-  createHotel: '/hotels/create',
-  editHotel: '/hotels/:id',
+  hotelCollection: '/characters',
+  createHotel: '/character/create',
+  editHotel: '/character/:id',
 };
 
 type NavigationFunction = (id: string) => string;
