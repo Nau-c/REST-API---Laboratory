@@ -28,21 +28,21 @@ export const mapHotelFromVmToApi = (hotel: viewModel.Hotel): apiModel.Hotel =>
 export const mapCharacterFromApiToVm = (
   character: viewModel.Character
 ): Character => ({
-  id: character.id,
-  name: character.name,
-  status: character.status,
-  species: character.species,
-  type: character.type || '',
-  gender: character.gender,
+  id: character?.id,
+  name: character?.name,
+  status: character?.status,
+  species: character?.species,
+  type: character?.type || '',
+  gender: character?.gender,
   origin: {
-    name: character.origin.name,
+    name: character?.origin?.name,
     url: '',
   },
   location: {
-    name: character.location.name,
+    name: character?.location?.name,
     url: '',
   },
-  image: character.image.name,
+  image: character?.image?.name,
   episode: [],
   created: new Date(),
   url: '',

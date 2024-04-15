@@ -67,12 +67,23 @@ export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
   const [characters, setCharacter] = useState<Character | null>(null);
 
   useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
-      .then((response) => response.json())
-      .then((data) => setCharacter(data))
-      .catch((error) => console.error('Error fetching character details:', error));
-  }, [id]);
+    const fetchCharacter = async () => {
+      if (!id) {
+        // Si no hay ID, no hacemos la solicitud y salimos temprano
+        return;
+      }
 
+      try {
+        const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
+        const data = await response.json();
+        setCharacter(data);
+      } catch (error) {
+        console.error('Error fetching character details:', error);
+      }
+    };
+
+    fetchCharacter();
+  }, []);
 
   return (
     <div className={classes.root}>
