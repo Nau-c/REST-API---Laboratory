@@ -18,13 +18,25 @@ export const HotelCollectionComponent: React.FunctionComponent<Props> = (
   const [characters, setCharacters] = React.useState([]);
 
 
-  React.useEffect(() => {
-    fetch('https://rickandmortyapi.com/api/character')
-      .then((response) => response.json())
-      .then((data) => setCharacters(data.results))
-      .catch((error) => console.error('Error:', error))
-  }, []);
+  // React.useEffect(() => {
+  //   fetch('https://rickandmortyapi.com/api/character')
+  //     .then((response) => response.json())
+  //     .then((data) => setCharacters(data.results))
+  //     .catch((error) => console.error('Error:', error))
+  // }, []);
 
+  React.useEffect(() => {
+    fetch('http://localhost:3000/results')
+      .then(response => response.json())
+      .then(data => {
+        // Establecer los personajes en el estado
+        setCharacters(data);
+      })
+      .catch(error => {
+        // Manejar errores
+        console.error('Error fetching characters:', error);
+      });
+  }, []);
 
   return (
     <div className={classes.root}>
