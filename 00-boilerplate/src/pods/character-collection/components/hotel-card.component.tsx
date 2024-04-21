@@ -79,17 +79,16 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
   const [selectedCharacter, setSelectedCharacter] = React.useState(null); // Nuevo estado para almacenar el personaje seleccionado
 
 
-  const handleEdit = async (id: number) => {
-    // Aquí realizamos una solicitud al servidor JSON local para obtener los detalles del personaje
-    try {
-      const response = await fetch(`http://localhost:3001/characters/${id}`); // Cambia la URL según tu configuración
-      const character = await response.json();
-      setSelectedCharacter(character);
-    } catch (error) {
-      console.error('Error fetching character details:', error);
-    }
-  };
-
+  // const handleEdit = async (id: number) => {
+  //   // Aquí realizamos una solicitud al servidor JSON local para obtener los detalles del personaje
+  //   try {
+  //     const response = await fetch(`http://localhost:3001/characters/${id}`); // Cambia la URL según tu configuración
+  //     const character = await response.json();
+  //     setSelectedCharacter(character);
+  //   } catch (error) {
+  //     console.error('Error fetching character details:', error);
+  //   }
+  // };
 
   return (
     <Card>

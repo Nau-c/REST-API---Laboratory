@@ -25,11 +25,12 @@ export const HotelCollectionComponent: React.FunctionComponent<Props> = (
   //     .catch((error) => console.error('Error:', error))
   // }, []);
 
+  // Reemplazar los endpoints para que apunten al json-server.
   React.useEffect(() => {
     fetch('http://localhost:3000/results')
       .then(response => response.json())
       .then(data => {
-        // Establecer los personajes en el estado
+        //Ejercicio 2: Establecer los personajes en el estado
         setCharacters(data);
       })
       .catch(error => {
