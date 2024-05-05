@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { HotelEntityVm } from './character-collection.vm';
-import { getHotelCollection } from './api';
+import { CharacterEntityVm } from './character-collection.vm';
+import { getCharacterCollection } from './api';
 import { mapFromApiToVm } from './character-collection.mapper';
 import { mapToCollection } from 'common/mappers';
 
-export const useHotelCollection = () => {
-  const [hotelCollection, setHotelCollection] = React.useState<HotelEntityVm[]>(
-    []
-  );
+export const useCharacterCollection = () => {
+  const [characterCollection, setCharacterCollection] = React.useState<
+    CharacterEntityVm[]
+  >([]);
 
-  const loadHotelCollection = () => {
-    getHotelCollection().then((result) =>
-      setHotelCollection(mapToCollection(result, mapFromApiToVm))
+  const loadCharacterCollection = () => {
+    getCharacterCollection().then((result) =>
+      setCharacterCollection(mapToCollection(result, mapFromApiToVm))
     );
   };
 
-  return { hotelCollection, loadHotelCollection };
+  return { characterCollection, loadCharacterCollection };
 };
