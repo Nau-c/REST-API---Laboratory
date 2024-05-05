@@ -1,48 +1,57 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { HotelEntityVm } from './character-collection.vm';
-import { CharacterCard } from './components/hotel-card.component';
+import { Character } from './character-collection.vm';
+import { CharacterCard } from './components/character-card.component';
 import * as classes from './character-collection.styles';
+import { getAllCharactersJsonServer, getCharacterCollectionApi } from 'pods/character/api';
 
 interface Props {
-  hotelCollection: HotelEntityVm[];
-  onCreateHotel: () => void;
+  characterCollection: Character[];
+  onCreateCharacter: () => void;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
+
 }
 
-export const HotelCollectionComponent: React.FunctionComponent<Props> = (
+export const CharacterCollectionComponent: React.FunctionComponent<Props> = (
   props
 ) => {
-  const { hotelCollection, onCreateHotel, onEdit, onDelete } = props;
-  const [characters, setCharacters] = React.useState([]);
+  const { characterCollection, onCreateCharacter, onEdit, onDelete } = props;
+  const [characters, setCharacters] = React.useState<any[]>([]);
 
 
-  // React.useEffect(() => {
-  //   fetch('https://rickandmortyapi.com/api/character')
-  //     .then((response) => response.json())
-  //     .then((data) => setCharacters(data.results))
-  //     .catch((error) => console.error('Error:', error))
-  // }, []);
+  const handleDataApi = async () => {
+    try {
+      const response = await getCharacterCollectionApi();
+      setCharacters(response);
+    } catch (error) {
+      console.error('Error fetching characters:', error);
+    }
+  }
+
+  React.useEffect(() => {
+    handleDataApi()
+  }, []);
 
   // Reemplazar los endpoints para que apunten al json-server.
+
+  const handledata = async () => {
+    try {
+      const response = await getAllCharactersJsonServer();
+      setCharacters(response);
+    } catch (error) {
+      console.error('Error fetching characters:', error);
+    }
+  }
+
   React.useEffect(() => {
-    fetch('http://localhost:3000/results')
-      .then(response => response.json())
-      .then(data => {
-        //Ejercicio 2: Establecer los personajes en el estado
-        setCharacters(data);
-      })
-      .catch(error => {
-        // Manejar errores
-        console.error('Error fetching characters:', error);
-      });
+    handledata()
   }, []);
 
   return (
     <div className={classes.root}>
-      <Button variant="contained" color="primary" onClick={onCreateHotel}>
-        Add hotel
+      <Button variant="contained" color="primary" onClick={onCreateCharacter}>
+        Add character
       </Button>
 
       <ul className={classes.list}>

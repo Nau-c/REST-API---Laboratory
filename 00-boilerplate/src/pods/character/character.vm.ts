@@ -1,20 +1,20 @@
-export interface Hotel {
-  id: string;
-  name: string;
-  description: string;
-  rating: number;
-  address: string;
-  city: string;
-}
+// export interface Hotel {
+//   id: string;
+//   name: string;
+//   description: string;
+//   rating: number;
+//   address: string;
+//   city: string;
+// }
 
-export const createEmptyHotel = (): Hotel => ({
-  id: '',
-  name: '',
-  description: '',
-  rating: 3,
-  address: '',
-  city: '',
-});
+// export const createEmptyHotel = (): Hotel => ({
+//   id: '',
+//   name: '',
+//   description: '',
+//   rating: 3,
+//   address: '',
+//   city: '',
+// });
 
 export interface Character {
   id: string;
@@ -25,8 +25,9 @@ export interface Character {
   gender: string;
   rating: number;
   location: location;
-  image: image;
+  image: string;
   origin: origin;
+  bestSentences: string[];
 }
 
 export const createEmptyCharacter = (): Character => ({
@@ -38,8 +39,9 @@ export const createEmptyCharacter = (): Character => ({
   gender: '',
   rating: 0,
   location: { name: '' },
-  image: { name: '' },
+  image: '',
   origin: { name: '' },
+  bestSentences: [],
 });
 
 export interface image {
